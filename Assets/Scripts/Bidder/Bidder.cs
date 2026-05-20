@@ -22,7 +22,6 @@ namespace IrishFarmSim
 			// Bidding on cow if within desired price range
 	        if (bid && Time.time > bidStartTime + bidWaitTime)
 	        {
-	            BidScript.BidOnCow(this, desiredPrice);  
 	            Animator animator = GetComponent<Animator>();
 	            animator.SetTrigger("Bid");
 	            StartCoroutine(SpawnBidSprite(transform.position));

@@ -255,7 +255,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.01
+    globalScale: 0.03
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -301,16 +301,16 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips:
-  - eb51014a2d66ac940855ae20f46f1ed6
-  - de01f0afcb8b3db4eaa6cdea94cd2914
-  - 30f0dceeca82a99489858371bc33e255
   - 887a5568f8143ed41bbc2cf9b285f57c
-  - 10b189ccd37a320428e04fd9bbd5ca13
   - 5847feeff7c400b43ae5efa8a4639338
   - 10fa5493d927ecc4dac4e77afb48597b
-  - 45b3d84a9346b664785f2d89fe3a893a
+  - de01f0afcb8b3db4eaa6cdea94cd2914
   - d83205d8d79f41b479c60412f91860b3
   - ec0362a934f4cbd4cb67ff44d4efa29b
+  - eb51014a2d66ac940855ae20f46f1ed6
+  - 30f0dceeca82a99489858371bc33e255
+  - 10b189ccd37a320428e04fd9bbd5ca13
+  - 45b3d84a9346b664785f2d89fe3a893a
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
@@ -323,7 +323,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.01
+    globalScale: 0.03
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

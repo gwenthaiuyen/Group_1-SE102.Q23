@@ -28,7 +28,6 @@ namespace IrishFarmSim
 
 		public AudioClip cowSound;
 		public Cow cow;
-		public FarmUI userInterface;
 
 	    void Start()
 	    {
@@ -97,7 +96,6 @@ namespace IrishFarmSim
 			if(!GameController.GetSceneName().Equals("Farm"))
 				return;
 
-			userInterface = GameObject.Find("UserInterface").GetComponent<FarmUI>();
 			cameraControl = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
 			playerGO = GameObject.Find("Player");
 			movement = playerGO.GetComponent<Movement>();
@@ -364,9 +362,6 @@ namespace IrishFarmSim
 			position.y = transform.position.y + 6;
 			
 			cameraControl.MoveToLookAt(position, target);
-			
-			userInterface.cow = cow;
-			userInterface.cowGameObject = this.gameObject;
 			
 			GameController.Instance().farmCowUI = true;
 			GameController.Instance().cowSelected = true;

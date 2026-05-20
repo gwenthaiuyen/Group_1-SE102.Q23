@@ -3,11 +3,16 @@ using UnityEngine;
 
 public class AddMoney : MonoBehaviour
 {
+    public string LootName;
+    public int Quantity;
     void OnTriggerEnter(Collider other) 
     {
-        if (other.gameObject.name.Equals ("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            GameController.Instance().player.cash += 5000;
+            StorageManager.Instance.EarnLootItem(LootName, Quantity);
+            UIManager.Instance.Menu.UpdateQuantityText();
+
+            gameObject.SetActive(false);
         }
     }
 }

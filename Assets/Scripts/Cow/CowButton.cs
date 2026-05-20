@@ -11,9 +11,9 @@ namespace IrishFarmSim
 		public Text buttonText;
 		public Image imageIcon;
 
-		public void WhatIsMyName()
-		{
-			CreateScrollList.GetCowDetails(this.gameObject.name);
-		}
+		//public void WhatIsMyName()
+		//{
+		//	CreateScrollList.GetCowDetails(this.gameObject.name);
+		//}
 	}
 }

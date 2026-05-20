@@ -39,7 +39,7 @@ namespace IrishFarmSim
 		{
 			GameController.Instance().cowSelected = true;
 			GameController.Instance().cowIndex = (int.Parse(buttonName) - 1);
-			MartBidControl.cowList.SetActive(false);
+			//MartBidControl.cowList.SetActive(false);
 		}
 
 	    public static void RemoveCowButton(int index)

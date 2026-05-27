@@ -85,7 +85,6 @@
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Interaction\UIPlayTween.cs" />
     <Compile Include="Assets\Scripts\Menus\MartBuySell.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\UI\UIColorPicker.cs" />
-    <Compile Include="Assets\Scripts\Cow\CowMaker.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\UI\UITextList.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Tweening\TweenScale.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\UI\UI2DSprite.cs" />
@@ -98,6 +97,7 @@
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Internal\UIRect.cs" />
     <Compile Include="Assets\3rd Party\Cartoon Town and Farm\Standard Assets\Image Effects (Pro Only)\GlowEffect.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\UI\UITooltip.cs" />
+    <Compile Include="Assets\Scripts\Misc\AutoGate.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Interaction\UIScrollView.cs" />
     <Compile Include="Assets\Scripts\Menus\PlayerNameMenu.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\UI\UIStretch.cs" />
@@ -109,7 +109,6 @@
     <Compile Include="Assets\3rd Party\Cartoon Town and Farm\Tools\ScrollingUVs.cs" />
     <Compile Include="Assets\Scripts\Menus\MainMenu.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Examples\Scripts\InventorySystem\Game\UIItemStorage.cs" />
-    <Compile Include="Assets\Scripts\Bidder\Bidder.cs" />
     <Compile Include="Assets\Scripts\Misc\CloseButton.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\UI\UILocalize.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Internal\NGUIDebug.cs" />
@@ -122,7 +121,6 @@
     <Compile Include="Assets\3rd Party\Cartoon Town and Farm\Standard Assets\Image Effects (Pro Only)\SepiaToneEffect.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Interaction\UIScrollBar.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\UI\UIFont.cs" />
-    <Compile Include="Assets\Scripts\Bidder\BidderMaker.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Interaction\UISoundVolume.cs" />
     <Compile Include="Assets\Scripts\Cow\CowController.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Examples\Scripts\InventorySystem\System\InvGameItem.cs" />
@@ -175,7 +173,6 @@
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Interaction\UIProgressBar.cs" />
     <Compile Include="Assets\UI\NewSupplies.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Internal\BMSymbol.cs" />
-    <Compile Include="Assets\Scripts\Cow\Cow.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Examples\Scripts\Other\PanWithMouse.cs" />
     <Compile Include="Assets\Scripts\Menus\Supplies.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\UI\UIInputOnGUI.cs" />
@@ -250,11 +247,11 @@
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Tweening\AnimatedAlpha.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Examples\Scripts\Other\SetColorPickerColor.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Internal\UIEventListener.cs" />
-    <Compile Include="Assets\Scripts\Cow\CowButton.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Examples\Scripts\Other\Spin.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Internal\ByteReader.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Interaction\UIToggledObjects.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Interaction\UIToggledComponents.cs" />
+    <Compile Include="Assets\Scripts\Misc\UIAutoLookatCamera.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\UI\UISpriteData.cs" />
     <Compile Include="Assets\Scripts\UI\UIStorage.cs" />
   </ItemGroup>

@@ -151,6 +151,7 @@
     <Compile Include="Assets\3rd Party\NGUI\Scripts\UI\UIOrthoCamera.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Examples\Scripts\Other\PlayIdleAnimations.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Tweening\TweenPosition.cs" />
+    <Compile Include="Assets\ViapixGames\HealingItem\Package Scripts\Viapix_HealingItem.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Internal\Localization.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Examples\Scripts\InventorySystem\Game\UIStorageSlot.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Examples\Scripts\Other\OpenURLOnClick.cs" />
@@ -159,10 +160,13 @@
     <Compile Include="Assets\Scripts\Misc\CheckGC.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Internal\PropertyReference.cs" />
     <Compile Include="Assets\UI\TabButton.cs" />
+    <Compile Include="Assets\ViapixGames\Common Scripts\Viapix_PlayerHP.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerData.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Internal\SpringPanel.cs" />
+    <Compile Include="Assets\ViapixGames\Common Scripts\Viapix_UI_PlayerHP.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\UI\UIViewport.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Examples\Scripts\InventorySystem\System\InvStat.cs" />
+    <Compile Include="Assets\Scripts\Misc\ItemRotation.cs" />
     <Compile Include="Assets\3rd Party\Cartoon Town and Farm\Standard Assets\Image Effects (Pro Only)\VortexEffect.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Interaction\UIDragCamera.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\Interaction\UISlider.cs" />
@@ -254,6 +258,7 @@
     <Compile Include="Assets\Scripts\Misc\UIAutoLookatCamera.cs" />
     <Compile Include="Assets\3rd Party\NGUI\Scripts\UI\UISpriteData.cs" />
     <Compile Include="Assets\Scripts\UI\UIStorage.cs" />
+    <Compile Include="Assets\ViapixGames\Common Scripts\Viapix_PlayerMovement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\3rd Party\Cartoon Town and Farm\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\Tonemapper.shader" />

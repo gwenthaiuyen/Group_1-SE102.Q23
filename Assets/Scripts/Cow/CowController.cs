@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public enum CowStatus
 {
     Normal,
+    Waiting,
     Sick,
     Hungry,
     Recovering
@@ -12,24 +13,98 @@ public enum CowStatus
 
 public class CowController : MonoBehaviour
 {
-    public float TimeToDecisionStatus = 30;
+    [Header("Random Decision Time")]
+    public float MinDecisionTime = 5;
+    public float MaxDecisionTime = 40;
+
+    private float TimeToDecisionStatus;
+    [Header ("Timer")]
+    //public float TimeToDecisionStatus = 30;
     public float TimeToRecover = 5;
+
+    [Header("Cuurent Status")]
     public CowStatus CurrentStatus = CowStatus.Normal;
-    public GameObject CowStatusUI;
-    public Button StatusButton;
-    public GameObject RecoveringFX;
+    public Button ClickButton;
+
+    [Header("Waiting UI")]
+    public GameObject WaitingUI;
+
+    [Header("Hungry UI")]
+    public GameObject HungryUI;
+    //public Button FeedButton;
+
+    [Header("Sick UI")]
+    public GameObject SickUI;
+   
+
+    [Header("Effect")]
+    public GameObject HungryFX;
+    public GameObject SickFX;
 
     public float timeCountdown = 0;
 
+    public bool playerNearby = false;
+
     private void Start()
     {
-        StatusButton.onClick.AddListener(StatusClicked);
+        ClickButton.onClick.AddListener(TreatCow);
+        RandomizeDecisionTime();
         SetStatus(CowStatus.Normal); // Start with normal status
     }
 
-    private void StatusClicked()
+    private void OnTriggerEnter(Collider other)
     {
-        SetStatus(CowStatus.Normal); // test
+        if (other.CompareTag("Player"))
+        {
+            playerNearby = true;
+            if (CurrentStatus == CowStatus.Waiting)
+            {
+                RevealProblem();
+            }
+        }
+    }
+
+    private void RandomizeDecisionTime()
+    {
+        TimeToDecisionStatus = Random.Range(MinDecisionTime, MaxDecisionTime);
+
+    }
+    private void RevealProblem()
+    {
+        if (Random.Range(0, 100) >= 50)
+        {
+            SetStatus(CowStatus.Hungry);
+        }
+        else
+        {
+            SetStatus(CowStatus.Sick);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerNearby = false;
+        }
+    }
+    private void TreatCow()
+    {
+
+        //ClickButton.interactable = false;
+        Debug.Log("BUTTON CLICK");
+        HideAllUI();
+        if (CurrentStatus == CowStatus.Sick)
+        {
+            SickFX.SetActive(true);
+            
+        }
+        else if (CurrentStatus == CowStatus.Hungry)
+        {
+            HungryFX.SetActive(true);
+            
+        }
+        StartCoroutine(Recover());
     }
 
     private void Update()
@@ -39,50 +114,56 @@ public class CowController : MonoBehaviour
             timeCountdown += Time.deltaTime;
             if (timeCountdown >= TimeToDecisionStatus)
             {
-                // Randomly decide if the cow becomes sick or hungry
-                if (Random.Range(0, 100) >= 50)
-                {
-                    SetStatus(CowStatus.Sick);
-                }
-                else
-                {
-                    SetStatus(CowStatus.Hungry);
-                }
-                timeCountdown = 0; // Reset the countdown
+                SetStatus(CowStatus.Waiting);
             }
         }
     }
     
     public void SetStatus(CowStatus newStatus)
     {
+        CurrentStatus = newStatus;
         timeCountdown = 0; // Reset the countdown when status changes
 
-        if (newStatus != CowStatus.Normal && newStatus != CowStatus.Recovering)
-        {
-            RecoveringFX.SetActive(false);
-            CurrentStatus = newStatus;
-            CowStatusUI.SetActive(true); // Show the UI when the cow is not normal
-        }
-        else
-        {
-            // chuyen ve normal
-            CowStatusUI.SetActive(false); // Hide the UI when the cow is normal
-            if (CurrentStatus == CowStatus.Normal)
-            {
-                RecoveringFX.SetActive(false);
-                return; // No need to change status if it's already normal
-            }
+        HideAllUI();
+        HideAllFx();
 
-            CurrentStatus = CowStatus.Recovering; // Reset status to normal
-            RecoveringFX.SetActive(true); // Show recovering effect
-            StartCoroutine(Recover());
+        switch(newStatus) {
+            case CowStatus.Normal:
+                RandomizeDecisionTime();
+                // No UI or FX for normal status
+                break;
+            case CowStatus.Waiting:
+                WaitingUI.SetActive(true);
+
+                break;
+            case CowStatus.Hungry:
+                HungryUI.SetActive(true);
+
+                break;
+            case CowStatus.Sick:
+                SickUI.SetActive(true);
+
+                break;
         }
     }
 
     private IEnumerator Recover() 
-    {    
+    {
+        
         yield return new WaitForSeconds(TimeToRecover);
-        CurrentStatus = CowStatus.Normal; // Automatically recover to normal after the specified time
-        RecoveringFX.SetActive(false);
+        SetStatus(CowStatus.Normal);
+    }
+
+    private void HideAllUI()
+    {
+        WaitingUI.SetActive(false);
+        HungryUI.SetActive(false);
+        SickUI.SetActive(false);
+    }
+
+    private void HideAllFx()
+    {
+        HungryFX.SetActive(false);
+        SickFX.SetActive(false);
     }
 }

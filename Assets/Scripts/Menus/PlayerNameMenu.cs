@@ -1,81 +1,120 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro; // Bắt buộc phải có dòng này để dùng ô nhập chữ TextMeshPro
 
 namespace IrishFarmSim
 {
-	public class PlayerNameMenu : MonoBehaviour 
-	{
-		public Texture backgroundTexture;
-		public Texture backgroundLoading;
-		public GUIStyle labelPlayer;
-		public GUIStyle buttonPlayStyle;
-		public GUIStyle buttonBackStyle;
-		public GUIStyle textFieldStyle;
-		public AudioClip buttonSound;
+    public class PlayerNameMenu : MonoBehaviour
+    {
+        [Header("Giao Diện UI Mới")]
+        public RawImage backgroundUI;
+        public TMP_InputField playerNameInput; // Ô để người chơi gõ tên vào
 
-		private string playerName = "Joe";
-		private bool isLoading = false;
+        [Header("Hình Ảnh Nền Cũ")]
+        public Texture backgroundTexture;
+        public Texture backgroundLoading;
 
-		void FixedUpdate() 
-		{
-			if (Input.GetKeyDown (KeyCode.Escape)) 
-			{
-				// If esc key pressed, then load menu scene 
-				GetComponent<AudioSource>().PlayOneShot(buttonSound, 0.6f);
-				StartCoroutine(WaitFor(0));
-			}
-		}
+        [Header("Âm Thanh")]
+        public AudioClip buttonSound;
 
-		void OnGUI()
-		{
-			GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), backgroundTexture);
+        private bool isLoading = false;
+        private AudioSource audioSource;
 
-			if(!isLoading)
-			{
-				GUI.Label (new Rect (Screen.width * .272f, Screen.height * .05f, Screen.width * .45f, Screen.height * .16f), "", labelPlayer);
-				GUI.SetNextControlName ("PlayerInput");
-				// Getting player name from text field
-				playerName = GUI.TextField(new Rect(0, Screen.height * .40f, Screen.width, Screen.height * .22f), playerName, textFieldStyle);
-			}
+        void Start()
+        {
+            audioSource = GetComponent<AudioSource>();
 
-			if(!isLoading)
-			{
-				if (GUI.Button (new Rect (Screen.width * .725f, Screen.height * .81f, Screen.width * .24f, Screen.height * .16f), "", buttonPlayStyle))
-				{
-					// Now going to load new scene with new player data
-					isLoading = true;
-					GetComponent<AudioSource>().PlayOneShot(buttonSound, 0.6f);
-					GameController._instance.player = new Farmer ("Farmer", 25000, 0, 0, 0, 0, GameController.Instance().gameDifficulty, GameController.Instance().fxLevel);
-					GameController.Instance().player.name = playerName;
-					GameController.Instance().newGame = true;
-					StartCoroutine(WaitFor(3));
-					backgroundTexture = backgroundLoading;
-				}
-			}
+            // Đặt ảnh nền mặc định
+            if (backgroundUI != null && backgroundTexture != null)
+            {
+                backgroundUI.texture = backgroundTexture;
+            }
 
-			if(!isLoading)
-			{
-				if (GUI.Button (new Rect (Screen.width * .035f, Screen.height * .82f, Screen.width * .240f, Screen.height * .13f), "", buttonBackStyle))
-				{
-					// Now loading menu scene
-					GetComponent<AudioSource>().PlayOneShot(buttonSound, 0.6f);
-					StartCoroutine(WaitFor(0));
-				}
-			}
-		}
+            // Tự động điền sẵn tên "Joe" giống như bản cũ của bạn
+            if (playerNameInput != null)
+            {
+                playerNameInput.text = "Joe";
+            }
+        }
 
-		private IEnumerator WaitFor(int level) 
-		{
-			yield return new WaitForSeconds(1.0f);
+        void Update()
+        {
+            // Bấm nút Esc để quay lại Main Menu
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (isLoading) return;
+                PlaySound();
+                StartCoroutine(WaitFor(0)); // 0 là Scene Main Menu
+            }
+        }
 
-			if (level == 10) 
-			{
-				Application.Quit ();	
-			} 
-			else 
-			{
-				Application.LoadLevel (level);
-			}
-		}
-	}
+        // =================================================================
+        // CÁC HÀM GẮN VÀO NÚT BẤM CỦA CANVAS
+        // =================================================================
+
+        public void Btn_Play_Click()
+        {
+            if (isLoading) return;
+            isLoading = true;
+            PlaySound();
+
+            // 1. Lấy tên từ ô nhập chữ của người chơi
+            string playerName = "Joe"; // Tên dự phòng nếu người chơi không gõ gì
+            if (playerNameInput != null && !string.IsNullOrEmpty(playerNameInput.text))
+            {
+                playerName = playerNameInput.text;
+            }
+
+            // 2. GIỮ NGUYÊN 100% LOGIC TẠO NHÂN VẬT CỦA BẠN
+            GameController._instance.player = new Farmer("Farmer", 25000, 0, 0, 0, 0, GameController.Instance().gameDifficulty, GameController.Instance().fxLevel);
+            GameController.Instance().player.name = playerName;
+            GameController.Instance().newGame = true;
+
+            // 3. Đổi ảnh nền sang Loading
+            if (backgroundUI != null && backgroundLoading != null)
+            {
+                backgroundUI.texture = backgroundLoading;
+            }
+
+            // 4. Chuyển sang Scene Nông Trại (Vị trí số 3 trong Build Profiles)
+            StartCoroutine(WaitFor(3));
+        }
+
+        public void Btn_Back_Click()
+        {
+            if (isLoading) return;
+            PlaySound();
+
+            // Quay lại Main Menu (Vị trí số 0)
+            StartCoroutine(WaitFor(0));
+        }
+
+        // =================================================================
+        // XỬ LÝ HỆ THỐNG
+        // =================================================================
+
+        private void PlaySound()
+        {
+            if (audioSource != null && buttonSound != null)
+            {
+                audioSource.PlayOneShot(buttonSound, 0.6f);
+            }
+        }
+
+        private IEnumerator WaitFor(int level)
+        {
+            yield return new WaitForSeconds(1.0f);
+
+            if (level == 10)
+            {
+                Application.Quit();
+            }
+            else
+            {
+                SceneManager.LoadScene(level);
+            }
+        }
+    }
 }

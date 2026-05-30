@@ -9,7 +9,6 @@ namespace IrishFarmSim
 	public class GameController : MonoBehaviour
 	{
 		public Farmer player;
-		public List<Cow> cows;
 		public GameObject cowGameObject;
 
 		// UI & other game control variables
@@ -95,9 +94,9 @@ namespace IrishFarmSim
 	            file.Close();
 
 	            // Save cow data
-	            file = File.Open(Application.persistentDataPath + "/cows.dat", FileMode.OpenOrCreate);
-				bf.Serialize(file, _instance.cows);
-	            file.Close();
+	   //         file = File.Open(Application.persistentDataPath + "/cows.dat", FileMode.OpenOrCreate);
+				//bf.Serialize(file, _instance.cows);
+	   //         file.Close();
 
 				Debug.Log ("Saving!");
 	        }
@@ -122,15 +121,15 @@ namespace IrishFarmSim
 	                file.Close();
 	            }
 	            // Load cow data
-	            if (File.Exists(Application.persistentDataPath + "/cows.dat"))
-	            {
-	                file = File.Open(Application.persistentDataPath + "/cows.dat", FileMode.Open);
-					_instance.cows = (List<Cow>)bf.Deserialize(file);
-	                file.Close();
-	            }
+	    //        if (File.Exists(Application.persistentDataPath + "/cows.dat"))
+	    //        {
+	    //            file = File.Open(Application.persistentDataPath + "/cows.dat", FileMode.Open);
+					//_instance.cows = (List<Cow>)bf.Deserialize(file);
+	    //            file.Close();
+	    //        }
 
 				_instance.player = player;
-				_instance.cows = cows;
+				//_instance.cows = cows;
 				_instance.gameDifficulty = player.gameDifficulty;
 				_instance.fxLevel = player.fxLevel;
 				_instance.loadPlayer = false;

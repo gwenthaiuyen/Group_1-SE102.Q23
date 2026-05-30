@@ -136,13 +136,14 @@ public class ListAnimal : MonoBehaviour
         switch (animalType.ToLower())
         {
             case "cow":
-                var cowList = GameController.Instance().cows;
-                Debug.Log($"GetAnimalListByType(Cow): Found {cowList.Count} cows");
-                for (int i = 0; i < cowList.Count; i++)
-                {
-                    Debug.Log($"  - Cow {i}: {cowList[i].name} (Breed: {cowList[i].breed})");
-                }
-                return cowList.ConvertAll(x => (object)x);
+                //var cowList = GameController.Instance().cows;
+                //Debug.Log($"GetAnimalListByType(Cow): Found {cowList.Count} cows");
+                //for (int i = 0; i < cowList.Count; i++)
+                //{
+                //    Debug.Log($"  - Cow {i}: {cowList[i].name} (Breed: {cowList[i].breed})");
+                //}
+                //return cowList.ConvertAll(x => (object)x);
+                return null;
             // TODO: Thêm các loại vật khác khi có
             // case "chicken":
             //     return GameController.Instance().chickens.ConvertAll(x => (object)x);
@@ -159,8 +160,8 @@ public class ListAnimal : MonoBehaviour
     /// </summary>
     private string GetAnimalName(object animal)
     {
-        if (animal is Cow cow)
-            return cow.name;
+        //if (animal is Cow cow)
+        //    return cow.name;
         // TODO: Thêm các loại vật khác
         // if (animal is Chicken chicken)
         //     return chicken.name;
